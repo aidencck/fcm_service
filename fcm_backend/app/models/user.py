@@ -9,6 +9,9 @@ class DeviceInfo(BaseModel):
     device_os_version: Optional[str] = None
     app_version: Optional[str] = None
     push_token: Optional[str] = None
+    phone_number: Optional[str] = None
+    imei: Optional[str] = None
+    carrier: Optional[str] = None
 
 class CreateUserRequest(BaseModel):
     platform: str  # web, android, ios
