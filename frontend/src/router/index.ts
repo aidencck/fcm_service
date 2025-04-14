@@ -66,6 +66,33 @@ const routes: RouteRecordRaw[] = [
     path: '/account/notifications',
     name: 'NotificationSettings',
     component: () => import('../pages/account/NotificationSettings.vue')
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: () => import('../pages/Settings.vue'),
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
+    path: '/tv-mount',
+    name: 'tv-mount',
+    component: () => import('../pages/tv-mount/Calculator.vue')
+  },
+  {
+    path: '/tv-mount/installation/:id',
+    name: 'installation',
+    component: () => import('../pages/tv-mount/Installation.vue')
+  },
+  {
+    path: '/tv-mount/result',
+    name: 'mounting-result',
+    component: () => import('../pages/tv-mount/MountingResult.vue')
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/'
   }
 ]
 

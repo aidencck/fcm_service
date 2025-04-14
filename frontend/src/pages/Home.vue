@@ -1,12 +1,19 @@
 <template>
-  <div class="bg-white rounded-lg shadow p-6">
-    <h1 class="text-3xl font-bold text-gray-900">Welcome to Vue 3 Application</h1>
-    <p class="mt-4 text-gray-600">
-      This is a starter template with Vue 3, TypeScript, Tailwind CSS, and more.
-    </p>
+  <div class="min-h-screen">
+    <Hero />
+    <Features />
+    <Showcase />
+    <Contact />
   </div>
 </template>
 
 <script setup lang="ts">
-// Component logic here
-</script> 
+import Hero from './home/Hero.vue'
+import Features from './home/Features.vue'
+import Showcase from './home/Showcase.vue'
+import Contact from './home/Contact.vue'
+</script>
+
+<style scoped>
+/* Remove the background color style */
+</style> 
