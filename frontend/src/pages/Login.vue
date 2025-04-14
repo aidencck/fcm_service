@@ -6,7 +6,9 @@
     </div> -->
 
     <!-- 右侧登录表单区域 -->
-    <div class="w-full md:w-[480px] h-screen overflow-y-auto flex items-center justify-center bg-white/95 backdrop-blur-sm">
+    <div
+      class="w-full md:w-[480px] h-screen overflow-y-auto flex items-center justify-center bg-white/95 backdrop-blur-sm"
+    >
       <div class="w-full max-w-[400px] px-8 py-8">
         <!-- <div class="text-center mb-8">
           <select v-model="language" class="text-sm text-gray-600 bg-transparent">
@@ -79,15 +81,13 @@
             </button>
           </div>
         </form>
-
-       
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
- // Start Generation Here
+// Start Generation Here
 /**
  * 这段代码在登录页面中使用了 Vue 3 的组合式 API（setup 语法）来管理登录流程：
  * 1. 定义了多个响应式变量（username、password、showPassword、rememberMe、errorMessage）用来存储输入和相关状态。
@@ -111,8 +111,8 @@ const language = ref('zh')
   用户名和密码的初始值目前都为空字符串。
 */
 // Start of Selection
-const username = ref('')  // 用户名
-const password = ref('')  // 密码
+const username = ref('') // 用户名
+const password = ref('') // 密码
 const showPassword = ref(false)
 const rememberMe = ref(false)
 const errorMessage = ref('')
@@ -128,7 +128,7 @@ const handleLogin = async () => {
     // TODO: 实现实际的登录 API 调用
     // 这里模拟登录成功
     localStorage.setItem('username', username.value)
-    
+
     if (rememberMe.value) {
       localStorage.setItem('rememberedUsername', username.value)
       localStorage.setItem('rememberedPassword', password.value)
@@ -136,7 +136,7 @@ const handleLogin = async () => {
       localStorage.removeItem('rememberedUsername')
       localStorage.removeItem('rememberedPassword')
     }
-    
+
     // 登录成功后跳转到首页
     router.push('/')
   } catch (error) {
@@ -149,7 +149,7 @@ const handleLogin = async () => {
 const checkRememberedLogin = () => {
   const rememberedUsername = localStorage.getItem('rememberedUsername')
   const rememberedPassword = localStorage.getItem('rememberedPassword')
-  
+
   if (rememberedUsername && rememberedPassword) {
     username.value = rememberedUsername
     password.value = rememberedPassword
@@ -191,4 +191,4 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.2);
 }
-</style> 
+</style>

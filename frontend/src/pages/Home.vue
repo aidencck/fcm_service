@@ -16,4 +16,4 @@ import Contact from './home/Contact.vue'
 
 <style scoped>
 /* Remove the background color style */
-</style> 
+</style>

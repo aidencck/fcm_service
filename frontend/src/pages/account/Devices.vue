@@ -3,10 +3,7 @@
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="bg-white rounded-lg shadow">
         <div class="px-6 py-4 border-b border-gray-200">
-          <router-link 
-            to="/account" 
-            class="text-sm font-medium text-blue-600 hover:text-blue-700"
-          >
+          <router-link to="/account" class="text-sm font-medium text-blue-600 hover:text-blue-700">
             &larr; 返回账号管理
           </router-link>
           <h1 class="mt-4 text-2xl font-semibold text-gray-900">登录设备</h1>
@@ -15,14 +12,20 @@
 
         <div class="p-6">
           <div class="space-y-4">
-            <div v-for="device in accountStore.devices" :key="device.id" class="flex items-center justify-between p-4 border border-gray-200 rounded-lg">
+            <div
+              v-for="device in accountStore.devices"
+              :key="device.id"
+              class="flex items-center justify-between p-4 border border-gray-200 rounded-lg"
+            >
               <div>
                 <h3 class="text-sm font-medium text-gray-900">{{ device.name }}</h3>
                 <p class="text-sm text-gray-500">{{ device.location }}</p>
-                <p class="text-sm text-gray-500">最后活动时间：{{ formatDate(device.lastActive) }}</p>
+                <p class="text-sm text-gray-500">
+                  最后活动时间：{{ formatDate(device.lastActive) }}
+                </p>
                 <p v-if="device.isCurrent" class="text-sm text-green-600">当前设备</p>
               </div>
-              <button 
+              <button
                 v-if="!device.isCurrent"
                 @click="logoutDevice(device.id)"
                 class="px-4 py-2 text-sm font-medium text-red-600 hover:text-red-700"
@@ -58,4 +61,4 @@ const formatDate = (timestamp: number) => {
     minute: '2-digit'
   })
 }
-</script> 
+</script>

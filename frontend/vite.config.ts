@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { fileURLToPath, URL } from 'node:url'
+import legacy from '@vitejs/plugin-legacy'
+import { VitePWA } from 'vite-plugin-pwa'
 /**
  * 该配置文件包含以下配置项：
  * 1. plugins: [vue()]  // 使用 Vue 插件
@@ -24,7 +26,27 @@ function listConfigItems() {
 console.log('Vite 配置项汇总：', listConfigItems())
 
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    legacy(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      manifest: {
+        name: 'TV Mount',
+        short_name: 'TV Mount',
+        description: '专业的电视挂架解决方案',
+        theme_color: '#4F46E5',
+        icons: [
+          {
+            src: '/logo.svg',
+            sizes: '120x40',
+            type: 'image/svg+xml',
+            purpose: 'any'
+          }
+        ]
+      }
+    })
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))

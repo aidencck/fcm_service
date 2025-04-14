@@ -36,4 +36,4 @@ export class UserApi {
   static async updateUserInfo(data: Partial<UserInfo>): Promise<BaseResponse<UserInfo>> {
     return Http.put(`${this.baseUrl}/me`, data)
   }
-} 
+}

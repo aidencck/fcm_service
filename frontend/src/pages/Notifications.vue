@@ -6,7 +6,7 @@
         <div class="sticky top-0 p-4">
           <div class="flex items-center justify-between mb-4">
             <h2 class="text-sm font-semibold text-gray-900">时间线</h2>
-            <button 
+            <button
               @click="selectedDate = ''"
               class="text-xs text-blue-600 hover:text-blue-700"
               :class="{ 'opacity-50 cursor-not-allowed': !selectedDate }"
@@ -16,8 +16,8 @@
             </button>
           </div>
           <div class="space-y-1">
-            <button 
-              v-for="(group, date) in groupedNotifications" 
+            <button
+              v-for="(group, date) in groupedNotifications"
               :key="date"
               @click="selectedDate = date"
               class="w-full text-left px-2 py-2 rounded-lg transition-colors duration-200"
@@ -28,7 +28,7 @@
             >
               <div class="flex items-center justify-between">
                 <div class="text-sm font-medium text-gray-900">{{ formatDateLabel(date) }}</div>
-                <div 
+                <div
                   class="text-xs px-1.5 py-0.5 rounded-full"
                   :class="{
                     'bg-blue-100 text-blue-700': selectedDate === date,
@@ -38,7 +38,7 @@
                   {{ group.length }}
                 </div>
               </div>
-              <div 
+              <div
                 class="mt-0.5 text-xs"
                 :class="{
                   'text-blue-600': selectedDate === date,
@@ -56,7 +56,7 @@
       <div class="flex-1 p-6">
         <div class="flex justify-between items-center mb-6">
           <h1 class="text-3xl font-bold text-gray-900">消息通知</h1>
-          <button 
+          <button
             v-if="notificationsStore.unreadCount > 0"
             @click="notificationsStore.markAllAsRead()"
             class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md"
@@ -70,8 +70,8 @@
         </div>
 
         <div v-else class="space-y-4">
-          <div 
-            v-for="notification in filteredNotifications" 
+          <div
+            v-for="notification in filteredNotifications"
             :key="notification.id"
             class="border rounded-lg p-4 hover:bg-gray-50 transition-colors cursor-pointer"
             :class="{ 'bg-gray-50': !notification.read }"
@@ -81,8 +81,8 @@
               <div class="flex-1">
                 <div class="flex items-center space-x-2">
                   <h3 class="font-medium text-gray-900">{{ notification.title }}</h3>
-                  <span 
-                    v-if="!notification.read" 
+                  <span
+                    v-if="!notification.read"
                     class="inline-block h-2 w-2 rounded-full bg-red-500"
                   ></span>
                 </div>
@@ -92,14 +92,14 @@
                 </p>
               </div>
               <div class="flex space-x-2">
-                <button 
+                <button
                   v-if="!notification.read"
                   @click.stop="notificationsStore.markAsRead(notification.id)"
                   class="text-sm text-gray-500 hover:text-gray-700"
                 >
                   标记为已读
                 </button>
-                <button 
+                <button
                   @click.stop="notificationsStore.removeNotification(notification.id)"
                   class="text-sm text-red-500 hover:text-red-700"
                 >
@@ -202,4 +202,4 @@ const formatDate = (timestamp: number) => {
     minute: '2-digit'
   })
 }
-</script> 
+</script>

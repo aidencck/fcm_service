@@ -5,6 +5,13 @@ import type { BaseResponse } from '../api/types'
 
 // 定义数据类型
 interface ExampleData {
+  /**
+   * 当前数据类型包括以下字段：
+   * - id: 项目的唯一标识
+   * - name: 项目的名称
+   * - description: 项目的描述
+   * - createdAt: 项目创建的时间
+   */
   id: string
   name: string
   description: string
@@ -148,4 +155,4 @@ export const useExampleStore = defineStore('example', () => {
     updateItem,
     deleteItem
   }
-}) 
+})

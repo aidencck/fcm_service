@@ -15,4 +15,4 @@ import { useAuthStore } from './stores'
 const authStore = useAuthStore()
 authStore.checkAuth()
 
-app.mount('#app') 
+app.mount('#app')

@@ -4,10 +4,7 @@
       <div class="bg-white rounded-lg shadow">
         <!-- Header -->
         <div class="px-6 py-4 border-b border-gray-200">
-          <router-link 
-            to="/account" 
-            class="text-sm font-medium text-blue-600 hover:text-blue-700"
-          >
+          <router-link to="/account" class="text-sm font-medium text-blue-600 hover:text-blue-700">
             &larr; 返回账号管理
           </router-link>
           <h1 class="mt-4 text-2xl font-semibold text-gray-900">通知设置</h1>
@@ -25,22 +22,22 @@
                   <h3 class="text-sm font-medium text-gray-900">邮件通知</h3>
                   <p class="text-sm text-gray-500">通过电子邮件接收重要通知</p>
                 </div>
-                <input 
-                  type="checkbox" 
+                <input
+                  type="checkbox"
                   v-model="accountStore.notificationSettings.email"
                   class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                >
+                />
               </div>
               <div class="flex items-center justify-between">
                 <div>
                   <h3 class="text-sm font-medium text-gray-900">应用内通知</h3>
                   <p class="text-sm text-gray-500">在应用内接收通知</p>
                 </div>
-                <input 
-                  type="checkbox" 
+                <input
+                  type="checkbox"
                   v-model="accountStore.notificationSettings.inApp"
                   class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                >
+                />
               </div>
             </div>
           </div>
@@ -54,40 +51,40 @@
                   <h3 class="text-sm font-medium text-gray-900">系统通知</h3>
                   <p class="text-sm text-gray-500">接收系统更新和维护通知</p>
                 </div>
-                <input 
-                  type="checkbox" 
+                <input
+                  type="checkbox"
                   v-model="accountStore.notificationSettings.system"
                   class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                >
+                />
               </div>
               <div class="flex items-center justify-between">
                 <div>
                   <h3 class="text-sm font-medium text-gray-900">安全通知</h3>
                   <p class="text-sm text-gray-500">接收账号安全相关通知</p>
                 </div>
-                <input 
-                  type="checkbox" 
+                <input
+                  type="checkbox"
                   v-model="accountStore.notificationSettings.security"
                   class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                >
+                />
               </div>
               <div class="flex items-center justify-between">
                 <div>
                   <h3 class="text-sm font-medium text-gray-900">营销通知</h3>
                   <p class="text-sm text-gray-500">接收产品更新和促销信息</p>
                 </div>
-                <input 
-                  type="checkbox" 
+                <input
+                  type="checkbox"
                   v-model="accountStore.notificationSettings.marketing"
                   class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
-                >
+                />
               </div>
             </div>
           </div>
 
           <!-- Save Button -->
           <div class="mt-8 flex justify-end">
-            <button 
+            <button
               @click="saveSettings"
               class="px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-md"
             >
@@ -111,4 +108,4 @@ const saveSettings = () => {
   accountStore.updateNotificationSettings(accountStore.notificationSettings)
   router.push('/account')
 }
-</script> 
+</script>

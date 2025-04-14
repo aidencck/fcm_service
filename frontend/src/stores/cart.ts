@@ -85,4 +85,4 @@ export const useCartStore = defineStore('cart', () => {
     clearCart,
     loadCart
   }
-}) 
+})

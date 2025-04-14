@@ -21,4 +21,4 @@ const createAxiosInstance = (config: AxiosRequestConfig): AxiosInstance => {
   return instance
 }
 
-export default createAxiosInstance 
+export default createAxiosInstance

@@ -1,12 +1,17 @@
 <template>
   <div class="bg-white rounded-lg shadow p-6">
     <div class="mb-6">
-      <router-link 
-        to="/notifications" 
+      <router-link
+        to="/notifications"
         class="inline-flex items-center text-gray-600 hover:text-gray-900"
       >
         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M15 19l-7-7 7-7"
+          />
         </svg>
         返回消息列表
       </router-link>
@@ -21,14 +26,14 @@
           </p>
         </div>
         <div class="flex space-x-2">
-          <button 
+          <button
             v-if="!notification.read"
             @click="markAsRead"
             class="px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md"
           >
             标记为已读
           </button>
-          <button 
+          <button
             @click="deleteNotification"
             class="px-4 py-2 text-sm font-medium text-red-600 hover:text-red-700 hover:bg-red-50 rounded-md"
           >
@@ -42,7 +47,7 @@
       </div>
 
       <div class="flex items-center space-x-2">
-        <span 
+        <span
           class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium"
           :class="{
             'bg-blue-100 text-blue-800': notification.type === 'info',
@@ -53,7 +58,7 @@
         >
           {{ getTypeText(notification.type) }}
         </span>
-        <span 
+        <span
           v-if="!notification.read"
           class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800"
         >
@@ -120,4 +125,4 @@ onMounted(() => {
     router.push('/notifications')
   }
 })
-</script> 
+</script>

@@ -10,10 +10,7 @@ class Http {
     setupInterceptors(this.instance)
   }
 
-  static async get<T = any>(
-    url: string,
-    config?: AxiosRequestConfig
-  ): Promise<BaseResponse<T>> {
+  static async get<T = any>(url: string, config?: AxiosRequestConfig): Promise<BaseResponse<T>> {
     return this.instance.get(url, config)
   }
 
@@ -33,10 +30,7 @@ class Http {
     return this.instance.put(url, data, config)
   }
 
-  static async delete<T = any>(
-    url: string,
-    config?: AxiosRequestConfig
-  ): Promise<BaseResponse<T>> {
+  static async delete<T = any>(url: string, config?: AxiosRequestConfig): Promise<BaseResponse<T>> {
     return this.instance.delete(url, config)
   }
 
@@ -52,4 +46,4 @@ class Http {
 // 初始化拦截器
 Http.init()
 
-export default Http 
+export default Http

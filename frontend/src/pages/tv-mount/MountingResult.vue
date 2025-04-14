@@ -1,19 +1,25 @@
 <template>
   <div class="max-w-6xl mx-auto px-4 py-8">
     <!-- 返回按钮 -->
-    <button 
-      @click="router.back()"
-      class="flex items-center text-gray-600 hover:text-gray-900 mb-8"
-    >
+    <button @click="router.back()" class="flex items-center text-gray-600 hover:text-gray-900 mb-8">
       <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M10 19l-7-7m0 0l7-7m-7 7h18"
+        />
       </svg>
       Back to Installation
     </button>
 
     <!-- 标题 -->
     <div class="text-center mb-12">
-      <h1 class="text-3xl font-bold text-gray-900">Mounting Height Result<sup class="text-sm bg-purple-500 text-white px-1 rounded ml-1">AI</sup></h1>
+      <h1 class="text-3xl font-bold text-gray-900">
+        Mounting Height Result<sup class="text-sm bg-purple-500 text-white px-1 rounded ml-1"
+          >AI</sup
+        >
+      </h1>
       <p class="text-gray-600 mt-2">Optimal TV mounting height calculation based on your inputs</p>
     </div>
 
@@ -63,8 +69,10 @@
               <div class="border-4 border-gray-300 rounded-lg bg-white" :style="tvSizeStyle"></div>
             </div>
             <!-- 测量线 -->
-            <div class="absolute left-1/2 transform -translate-x-1/2 w-1 bg-red-500 border-l-2 border-dashed border-red-500"
-                 :style="measureLineStyle"></div>
+            <div
+              class="absolute left-1/2 transform -translate-x-1/2 w-1 bg-red-500 border-l-2 border-dashed border-red-500"
+              :style="measureLineStyle"
+            ></div>
           </div>
         </div>
 
@@ -84,13 +92,13 @@
 
     <!-- 操作按钮 -->
     <div class="flex justify-end mt-8 space-x-4">
-      <button 
+      <button
         @click="downloadGuide"
         class="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
       >
         Download Guide
       </button>
-      <button 
+      <button
         @click="router.push('/tv-mount')"
         class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
       >
@@ -118,7 +126,7 @@ const calculateOptimalHeight = () => {
   // 这里使用简化的计算公式，实际可能需要更复杂的计算
   const screenHeight = (parseInt(tvInfo.value.size) * 24.5) / Math.sqrt(337) // 近似计算屏幕高度(cm)
   const viewingAngle = 15 // 理想观看角度（度）
-  const optimalHeight = viewingDistance.value * Math.tan(viewingAngle * Math.PI / 180) + 120 // 120cm 是平均坐姿高度
+  const optimalHeight = viewingDistance.value * Math.tan((viewingAngle * Math.PI) / 180) + 120 // 120cm 是平均坐姿高度
   return Math.round(optimalHeight)
 }
 
@@ -128,27 +136,27 @@ const tvSizeStyle = computed(() => {
   const height = '50%'
   return {
     width,
-    height,
+    height
   }
 })
 
 const tvPositionStyle = computed(() => {
   const optimalHeight = calculateOptimalHeight()
-  const top = `${(100 - (optimalHeight / wallHeight.value * 100))}%`
+  const top = `${100 - (optimalHeight / wallHeight.value) * 100}%`
   return {
     top,
     left: '50%',
-    transform: 'translate(-50%, -50%)',
+    transform: 'translate(-50%, -50%)'
   }
 })
 
 const measureLineStyle = computed(() => {
   const optimalHeight = calculateOptimalHeight()
-  const height = `${optimalHeight / wallHeight.value * 100}%`
+  const height = `${(optimalHeight / wallHeight.value) * 100}%`
   const bottom = '0'
   return {
     height,
-    bottom,
+    bottom
   }
 })
 
@@ -161,6 +169,8 @@ const downloadGuide = () => {
 
 <style scoped>
 .shadow {
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
-</style> 
+</style>

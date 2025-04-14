@@ -143,4 +143,4 @@ export const useSiteStore = defineStore('site', () => {
     updateSite,
     deleteSite
   }
-}) 
+})

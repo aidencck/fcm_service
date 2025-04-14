@@ -152,4 +152,4 @@ export const useAccountStore = defineStore('account', () => {
     toggleTwoFactorAuth,
     initialize
   }
-}) 
+})

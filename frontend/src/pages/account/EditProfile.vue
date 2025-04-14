@@ -4,12 +4,14 @@
       <div class="bg-white rounded-lg shadow">
         <div class="px-6 py-4 border-b border-gray-200">
           <div class="flex items-center">
-            <router-link 
-              to="/account" 
-              class="text-gray-600 hover:text-gray-900 mr-4"
-            >
+            <router-link to="/account" class="text-gray-600 hover:text-gray-900 mr-4">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19l-7-7 7-7"
+                />
               </svg>
             </router-link>
             <h1 class="text-2xl font-semibold text-gray-900">编辑个人资料</h1>
@@ -105,4 +107,4 @@ const handleSubmit = () => {
   console.log('保存更改:', form.value)
   router.push('/account')
 }
-</script> 
+</script>

@@ -10,7 +10,9 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
     "test": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:watch": "vitest watch",
+    "test:coverage": "vitest run --coverage",
+    "test:ui": "vitest --ui"
   },
   "dependencies": {
     "axios": "^1.6.0",
@@ -19,20 +21,26 @@
     "vue-router": "^4.2.0"
   },
   "devDependencies": {
+    "@rushstack/eslint-patch": "^1.11.0",
     "@types/node": "^20.17.30",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
+    "@vitejs/plugin-legacy": "^6.0.2",
     "@vitejs/plugin-vue": "^4.5.0",
     "@vitest/coverage-v8": "^1.2.2",
+    "@vue/test-utils": "^2.4.6",
     "@vue/tsconfig": "^0.4.0",
     "autoprefixer": "^10.4.21",
     "eslint": "^8.57.1",
+    "eslint-plugin-vitest": "^0.5.4",
+    "eslint-plugin-vue": "^10.0.0",
     "jsdom": "^26.1.0",
     "postcss": "^8.4.31",
     "prettier": "^3.5.3",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.8.3",
     "vite": "^5.0.0",
+    "vite-plugin-pwa": "^1.0.0",
     "vitest": "^1.2.2",
     "vue-tsc": "^1.8.27"
   }

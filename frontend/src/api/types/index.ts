@@ -25,4 +25,4 @@ export interface PaginatedResponse<T> {
   page: number
   pageSize: number
   totalPages: number
-} 
+}

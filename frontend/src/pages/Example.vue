@@ -16,13 +16,13 @@
         <h3 class="text-lg font-semibold">{{ item.name }}</h3>
         <p class="text-gray-600">{{ item.description }}</p>
         <div class="mt-2 flex space-x-2">
-          <button 
+          <button
             @click="handleEdit(item)"
             class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
           >
             编辑
           </button>
-          <button 
+          <button
             @click="handleDelete(item.id)"
             class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
           >
@@ -33,9 +33,7 @@
     </div>
 
     <!-- 空状态 -->
-    <div v-else class="text-center py-8 text-gray-500">
-      暂无数据
-    </div>
+    <div v-else class="text-center py-8 text-gray-500">暂无数据</div>
 
     <!-- 创建表单 -->
     <div class="mt-8">
@@ -43,7 +41,7 @@
       <form @submit.prevent="handleCreate" class="space-y-4">
         <div>
           <label class="block text-sm font-medium text-gray-700">名称</label>
-          <input 
+          <input
             v-model="newItem.name"
             type="text"
             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
@@ -52,17 +50,14 @@
         </div>
         <div>
           <label class="block text-sm font-medium text-gray-700">描述</label>
-          <textarea 
+          <textarea
             v-model="newItem.description"
             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
             rows="3"
             required
           ></textarea>
         </div>
-        <button 
-          type="submit"
-          class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
-        >
+        <button type="submit" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
           创建
         </button>
       </form>
@@ -122,4 +117,4 @@ const handleDelete = async (id: string) => {
     }
   }
 }
-</script> 
+</script>

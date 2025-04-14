@@ -15,7 +15,7 @@ export const setupInterceptors = (instance: AxiosInstance) => {
       }
       return config
     },
-    (error) => {
+    error => {
       return Promise.reject(error)
     }
   )
@@ -26,7 +26,7 @@ export const setupInterceptors = (instance: AxiosInstance) => {
       // 直接返回响应数据
       return response.data
     },
-    (error) => {
+    error => {
       const { response } = error
       let errorMessage = '未知错误'
 
@@ -73,4 +73,4 @@ export const setupInterceptors = (instance: AxiosInstance) => {
 const handleUnauthorized = () => {
   localStorage.removeItem('token')
   window.location.href = '/login'
-} 
+}

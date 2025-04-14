@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120" height="40" viewBox="0 0 120 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- TV Mount Icon -->
+  <path
+    d="M20 8C13.3726 8 8 13.3726 8 20C8 26.6274 13.3726 32 20 32C26.6274 32 32 26.6274 32 20C32 13.3726 26.6274 8 20 8Z"
+    fill="#4F46E5"
+    fill-opacity="0.1"
+    stroke="#4F46E5"
+    stroke-width="2"
+  />
+  <path
+    d="M15 20H25M20 15V25"
+    stroke="#4F46E5"
+    stroke-width="2"
+    stroke-linecap="round"
+  />
+  <!-- Text Part -->
+  <path
+    d="M45 15H50L53 25L56 15H61L57 28H49L45 15Z"
+    stroke="#1F2937"
+    stroke-width="1.5"
+  />
+  <path
+    d="M63 15H75V18H67V20H74V23H67V25H75V28H63V15Z"
+    stroke="#1F2937"
+    stroke-width="1.5"
+  />
+  <path
+    d="M77 15H82L85 25L88 15H93L89 28H81L77 15Z"
+    stroke="#1F2937"
+    stroke-width="1.5"
+  />
+  <path
+    d="M95 15H107V18H99V20H106V23H99V25H107V28H95V15Z"
+    stroke="#1F2937"
+    stroke-width="1.5"
+  />
+</svg> 

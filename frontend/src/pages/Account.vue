@@ -17,7 +17,7 @@
                 <h2 class="text-lg font-medium text-gray-900">个人信息</h2>
                 <p class="mt-1 text-sm text-gray-500">管理您的个人资料和联系方式</p>
               </div>
-              <router-link 
+              <router-link
                 to="/account/edit-profile"
                 class="px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700"
               >
@@ -27,15 +27,21 @@
             <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
                 <label class="block text-sm font-medium text-gray-700">姓名</label>
-                <p class="mt-1 text-sm text-gray-900">{{ accountStore.userInfo.name || '未设置' }}</p>
+                <p class="mt-1 text-sm text-gray-900">
+                  {{ accountStore.userInfo.name || '未设置' }}
+                </p>
               </div>
               <div>
                 <label class="block text-sm font-medium text-gray-700">邮箱</label>
-                <p class="mt-1 text-sm text-gray-900">{{ accountStore.userInfo.email || '未设置' }}</p>
+                <p class="mt-1 text-sm text-gray-900">
+                  {{ accountStore.userInfo.email || '未设置' }}
+                </p>
               </div>
               <div>
                 <label class="block text-sm font-medium text-gray-700">手机号码</label>
-                <p class="mt-1 text-sm text-gray-900">{{ accountStore.userInfo.phone || '未设置' }}</p>
+                <p class="mt-1 text-sm text-gray-900">
+                  {{ accountStore.userInfo.phone || '未设置' }}
+                </p>
               </div>
               <div>
                 <label class="block text-sm font-medium text-gray-700">注册时间</label>
@@ -58,7 +64,7 @@
                   <h3 class="text-sm font-medium text-gray-900">密码</h3>
                   <p class="text-sm text-gray-500">定期更改密码以保护账号安全</p>
                 </div>
-                <router-link 
+                <router-link
                   to="/account/change-password"
                   class="px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700"
                 >
@@ -70,7 +76,7 @@
                   <h3 class="text-sm font-medium text-gray-900">双重认证</h3>
                   <p class="text-sm text-gray-500">为您的账号添加额外的安全保护</p>
                 </div>
-                <router-link 
+                <router-link
                   to="/account/two-factor-auth"
                   class="px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700"
                 >
@@ -82,7 +88,7 @@
                   <h3 class="text-sm font-medium text-gray-900">登录设备</h3>
                   <p class="text-sm text-gray-500">查看和管理您的登录设备</p>
                 </div>
-                <router-link 
+                <router-link
                   to="/account/devices"
                   class="px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700"
                 >
@@ -106,7 +112,7 @@
                   <h3 class="text-sm font-medium text-gray-900">数据收集</h3>
                   <p class="text-sm text-gray-500">管理我们如何收集和使用您的数据</p>
                 </div>
-                <router-link 
+                <router-link
                   to="/account/privacy"
                   class="px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700"
                 >
@@ -139,7 +145,9 @@
                   <h3 class="text-sm font-medium text-gray-900">语言</h3>
                   <p class="text-sm text-gray-500">选择您的首选语言</p>
                 </div>
-                <select class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md">
+                <select
+                  class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
+                >
                   <option>简体中文</option>
                   <option>English</option>
                 </select>
@@ -149,7 +157,7 @@
                   <h3 class="text-sm font-medium text-gray-900">通知设置</h3>
                   <p class="text-sm text-gray-500">管理您接收的通知类型</p>
                 </div>
-                <router-link 
+                <router-link
                   to="/account/notifications"
                   class="px-4 py-2 text-sm font-medium text-blue-600 hover:text-blue-700"
                 >
@@ -173,4 +181,4 @@ const accountStore = useAccountStore()
 onMounted(() => {
   accountStore.initialize()
 })
-</script> 
+</script>
