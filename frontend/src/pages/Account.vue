@@ -27,19 +27,19 @@
             <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
                 <label class="block text-sm font-medium text-gray-700">姓名</label>
-                <p class="mt-1 text-sm text-gray-900">{{ userInfo.name || '未设置' }}</p>
+                <p class="mt-1 text-sm text-gray-900">{{ accountStore.userInfo.name || '未设置' }}</p>
               </div>
               <div>
                 <label class="block text-sm font-medium text-gray-700">邮箱</label>
-                <p class="mt-1 text-sm text-gray-900">{{ userInfo.email || '未设置' }}</p>
+                <p class="mt-1 text-sm text-gray-900">{{ accountStore.userInfo.email || '未设置' }}</p>
               </div>
               <div>
                 <label class="block text-sm font-medium text-gray-700">手机号码</label>
-                <p class="mt-1 text-sm text-gray-900">{{ userInfo.phone || '未设置' }}</p>
+                <p class="mt-1 text-sm text-gray-900">{{ accountStore.userInfo.phone || '未设置' }}</p>
               </div>
               <div>
                 <label class="block text-sm font-medium text-gray-700">注册时间</label>
-                <p class="mt-1 text-sm text-gray-900">{{ formatDate(userInfo.createdAt) }}</p>
+                <p class="mt-1 text-sm text-gray-900">{{ accountStore.formattedDate }}</p>
               </div>
             </div>
           </div>
@@ -165,37 +165,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { onMounted } from 'vue'
+import { useAccountStore } from '../stores/account'
 
-interface UserInfo {
-  name: string | null
-  email: string | null
-  phone: string | null
-  createdAt: number | null
-}
-
-const userInfo = ref<UserInfo>({
-  name: null,
-  email: null,
-  phone: null,
-  createdAt: null
-})
-
-const formatDate = (timestamp: number | null) => {
-  if (!timestamp) return '未知'
-  const date = new Date(timestamp)
-  return date.toLocaleString('zh-CN', {
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit'
-  })
-}
+const accountStore = useAccountStore()
 
 onMounted(() => {
-  // TODO: 从后端或本地存储获取用户信息
-  const storedUser = localStorage.getItem('user')
-  if (storedUser) {
-    userInfo.value = JSON.parse(storedUser)
-  }
+  accountStore.initialize()
 })
 </script> 
