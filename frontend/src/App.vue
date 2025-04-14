@@ -216,7 +216,7 @@
     <footer class="bg-white shadow-sm mt-8">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <p class="text-center text-gray-500 text-sm">
-          © 2024 TV Mount. All rights reserved.
+          © 2024 TV Mount. All rights reserved. | Version X.Y.Z
         </p>
       </div>
     </footer>

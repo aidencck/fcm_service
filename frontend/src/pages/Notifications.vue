@@ -2,7 +2,7 @@
   <div class="bg-white rounded-lg shadow">
     <div class="flex">
       <!-- 时间线 -->
-      <div class="w-48 border-r border-gray-200 bg-gray-50">
+      <div class="w-40 border-r border-gray-200 bg-gray-50 relative hidden">
         <div class="sticky top-0 p-4">
           <div class="flex items-center justify-between mb-4">
             <h2 class="text-sm font-semibold text-gray-900">时间线</h2>
@@ -15,38 +15,29 @@
               全部
             </button>
           </div>
-          <div class="space-y-1">
+          <div class="space-y-1 relative">
+            <!-- Vertical line -->
+            <div class="absolute left-4 top-2 bottom-2 w-0.5 bg-gray-200"></div>
+
             <button
-              v-for="(group, date) in groupedNotifications"
+              v-for="(group, date, index) in groupedNotifications"
               :key="date"
               @click="selectedDate = date"
-              class="w-full text-left px-2 py-2 rounded-lg transition-colors duration-200"
+              class="relative w-full text-left px-2 py-2 rounded-lg transition-colors duration-200 group"
               :class="{
                 'bg-white shadow-sm border border-blue-200': selectedDate === date,
                 'hover:bg-white hover:shadow-sm': selectedDate !== date
               }"
             >
-              <div class="flex items-center justify-between">
-                <div class="text-sm font-medium text-gray-900">{{ formatDateLabel(date) }}</div>
-                <div
-                  class="text-xs px-1.5 py-0.5 rounded-full"
-                  :class="{
-                    'bg-blue-100 text-blue-700': selectedDate === date,
-                    'bg-gray-100 text-gray-600': selectedDate !== date
-                  }"
-                >
-                  {{ group.length }}
-                </div>
-              </div>
+              <!-- Timeline Node -->
               <div
-                class="mt-0.5 text-xs"
+                class="absolute left-4 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full border-2 z-10"
                 :class="{
-                  'text-blue-600': selectedDate === date,
-                  'text-gray-500': selectedDate !== date
+                  'bg-blue-500 border-white': selectedDate === date,
+                  'bg-gray-300 border-gray-50 group-hover:bg-gray-400': selectedDate !== date
                 }"
-              >
-                {{ formatWeekday(date) }}
-              </div>
+              ></div>
+
             </button>
           </div>
         </div>
@@ -145,42 +136,6 @@ const filteredNotifications = computed(() => {
   }
   return groupedNotifications.value[selectedDate.value] || []
 })
-
-// 格式化星期
-const formatWeekday = (dateStr: string) => {
-  const date = new Date(dateStr)
-  const today = new Date()
-  const yesterday = new Date(today)
-  yesterday.setDate(yesterday.getDate() - 1)
-
-  if (date.toDateString() === today.toDateString()) {
-    return '今天'
-  } else if (date.toDateString() === yesterday.toDateString()) {
-    return '昨天'
-  } else {
-    const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
-    return weekdays[date.getDay()]
-  }
-}
-
-// 格式化日期标签
-const formatDateLabel = (dateStr: string) => {
-  const date = new Date(dateStr)
-  const today = new Date()
-  const yesterday = new Date(today)
-  yesterday.setDate(yesterday.getDate() - 1)
-
-  if (date.toDateString() === today.toDateString()) {
-    return '今天'
-  } else if (date.toDateString() === yesterday.toDateString()) {
-    return '昨天'
-  } else {
-    return date.toLocaleDateString('zh-CN', {
-      month: '2-digit',
-      day: '2-digit'
-    })
-  }
-}
 
 // 格式化时间
 const formatTime = (timestamp: number) => {
