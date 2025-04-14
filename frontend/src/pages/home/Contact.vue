@@ -85,52 +85,56 @@
         </div>
 
         <!-- Contact Form -->
-        <div class="bg-gray-50 rounded-xl p-8">
+        <div class="bg-gray-50 rounded-xl p-8 shadow-md">
           <form class="space-y-6">
             <div>
-              <label for="name" class="block text-sm font-medium text-gray-700">姓名</label>
+              <label for="name" class="block text-sm font-medium text-gray-700 mb-1">姓名</label>
               <input
                 type="text"
                 id="name"
                 name="name"
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                class="mt-1 block w-full rounded-lg border-gray-200 px-4 py-3 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-150 ease-in-out"
+                placeholder="请输入您的姓名"
               />
             </div>
 
             <div>
-              <label for="email" class="block text-sm font-medium text-gray-700">邮箱</label>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-1">邮箱</label>
               <input
                 type="email"
                 id="email"
                 name="email"
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                class="mt-1 block w-full rounded-lg border-gray-200 px-4 py-3 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-150 ease-in-out"
+                placeholder="请输入您的邮箱地址"
               />
             </div>
 
             <div>
-              <label for="subject" class="block text-sm font-medium text-gray-700">主题</label>
+              <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">主题</label>
               <input
                 type="text"
                 id="subject"
                 name="subject"
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                class="mt-1 block w-full rounded-lg border-gray-200 px-4 py-3 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-150 ease-in-out"
+                placeholder="请输入主题"
               />
             </div>
 
             <div>
-              <label for="message" class="block text-sm font-medium text-gray-700">消息</label>
+              <label for="message" class="block text-sm font-medium text-gray-700 mb-1">消息</label>
               <textarea
                 id="message"
                 name="message"
                 rows="4"
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                class="mt-1 block w-full rounded-lg border-gray-200 px-4 py-3 shadow-sm focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-150 ease-in-out resize-none"
+                placeholder="请输入您的消息"
               ></textarea>
             </div>
 
             <div>
               <button
                 type="submit"
-                class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-md text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out"
               >
                 发送消息
               </button>

@@ -1,9 +1,9 @@
 <template>
   <!-- Hero Section -->
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-    <h1 class="text-4xl md:text-6xl font-bold mb-8 text-gray-900">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 text-center bg-gradient-to-b from-white to-gray-50">
+    <h1 class="text-4xl md:text-6xl font-extrabold mb-6 md:mb-8 text-transparent bg-clip-text bg-gradient-to-r from-gray-700 via-gray-900 to-black">
       借助 Firebase 和生成式 AI
-      <span class="inline-flex items-center">
+      <span class="inline-flex items-center align-middle">
         <span class="mx-2">
           <!-- Firebase Icon -->
           <svg
@@ -29,50 +29,51 @@
         <span class="mx-2">
           <!-- AI Icon -->
           <svg
-            class="w-12 h-12 inline-block"
+            class="w-12 h-12 inline-block text-[#64B5F6]"
             viewBox="0 0 32 32"
-            fill="none"
+            fill="currentColor"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
               d="M16 2C8.268 2 2 8.268 2 16C2 23.732 8.268 30 16 30C23.732 30 30 23.732 30 16C30 8.268 23.732 2 16 2Z"
-              fill="#64B5F6"
             />
-            <path
-              d="M16 7C13.239 7 11 9.239 11 12C11 14.761 13.239 17 16 17C18.761 17 21 14.761 21 12C21 9.239 18.761 7 16 7Z"
-              fill="white"
-            />
-            <path
-              d="M24 21C24 21 21.5 25 16 25C10.5 25 8 21 8 21"
-              stroke="white"
-              stroke-width="2"
-              stroke-linecap="round"
-            />
+            <g class="fill-white">
+              <path
+                d="M16 7C13.239 7 11 9.239 11 12C11 14.761 13.239 17 16 17C18.761 17 21 14.761 21 12C21 9.239 18.761 7 16 7Z"
+              />
+              <path
+                d="M24 21C24 21 21.5 25 16 25C10.5 25 8 21 8 21"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                fill="none"
+              />
+            </g>
           </svg>
         </span>
       </span>
       <br />让您的应用尽其所能
     </h1>
 
-    <p class="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto">
+    <p class="text-xl md:text-2xl text-gray-600 mb-8 md:mb-12 max-w-4xl mx-auto">
       Prototype, build & run modern, AI-powered experiences users love with Firebase, a platform
       designed to support you throughout your app development lifecycle.
     </p>
 
-    <p class="text-lg md:text-xl text-gray-500 mb-12">
+    <p class="text-lg md:text-xl text-gray-500 mb-8 md:mb-12">
       Backed by Google and trusted by millions of businesses around the world.
     </p>
 
-    <div class="flex justify-center gap-6">
+    <div class="flex flex-col sm:flex-row justify-center items-center gap-y-4 sm:gap-x-6">
       <a
         href="#"
-        class="px-8 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors font-medium"
+        class="w-full sm:w-auto px-8 py-3 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-all duration-200 font-medium text-center shadow-sm hover:shadow-md transform hover:-translate-y-0.5"
       >
         Get started in console
       </a>
       <a
         href="#"
-        class="px-8 py-3 border border-gray-300 text-gray-700 rounded-full hover:border-gray-400 transition-colors font-medium inline-flex items-center"
+        class="w-full sm:w-auto px-8 py-3 border border-gray-300 text-gray-700 rounded-full hover:border-gray-400 transition-all duration-200 font-medium inline-flex items-center justify-center shadow-sm hover:shadow-md transform hover:-translate-y-0.5"
       >
         Try Firebase Studio
         <svg

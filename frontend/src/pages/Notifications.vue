@@ -2,7 +2,7 @@
   <div class="bg-white rounded-lg shadow">
     <div class="flex">
       <!-- 时间线 -->
-      <div class="w-36 border-r border-gray-200 bg-gray-50">
+      <div class="w-48 border-r border-gray-200 bg-gray-50">
         <div class="sticky top-0 p-4">
           <div class="flex items-center justify-between mb-4">
             <h2 class="text-sm font-semibold text-gray-900">时间线</h2>
