@@ -22,64 +22,68 @@ wheels/
 
 # Virtual Environment
 venv/
-env/
 ENV/
+env/
 .env
-.venv
-.python-version
 
 # IDE
 .idea/
 .vscode/
 *.swp
 *.swo
-*~
-.project
-.pydevproject
-.settings/
-
-# Testing
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
-.pytest_cache/
-htmlcov/
-
-# Logs
-*.log
-logs/
-log/
-
-# Database
-*.db
-*.sqlite3
-*.sqlite
-
-# FastAPI
-.env
-.env.local
-.env.*.local
+.DS_Store
 
 # Firebase
 firebase-debug.log
 firebase-debug.*.log
-firebase-adminsdk.json
-serviceAccountKey.json
+.firebase/
+.firebaserc
+firebase.json
+
+# Logs
+*.log
+logs/
+
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+.tox/
 
 # Redis
-dump.rdb
 *.rdb
+dump.rdb
 
-# System
-.DS_Store
-Thumbs.db
+# Local development
+local_settings.py
+*.local
 *.bak
 *.tmp
-*.temp
+
+# Database
+*.db
+*.sqlite3
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Distribution / packaging
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
 
 # Project specific
 node_modules/
