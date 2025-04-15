@@ -33,26 +33,35 @@ env/
 *.swo
 .DS_Store
 
-# Firebase
-firebase-debug.log
-firebase-debug.*.log
-.firebase/
-.firebaserc
-firebase.json
+# Environment variables
+.env
+
+# Credentials
+credentials/
+*.json
+!package.json
 
 # Logs
 *.log
 logs/
 
-# Testing
-.coverage
-htmlcov/
-.pytest_cache/
-.tox/
-
 # Redis
 *.rdb
 dump.rdb
+
+# Test coverage
+.coverage
+htmlcov/
+.tox/
+.nox/
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
 
 # Local development
 local_settings.py

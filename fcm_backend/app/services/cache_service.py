@@ -1,11 +1,12 @@
 import logging
 from typing import Any, Optional, Dict
 from ..utils.redis_client import RedisClient
-from ..config.redis_config import REDIS_CONFIG
+from ..config.settings import settings
+import json
 
 class CacheService:
     def __init__(self):
-        self.redis_client = RedisClient(**REDIS_CONFIG)
+        self.redis_client = RedisClient(**settings.redis_config)
         self.prefix = "cache:"  # 缓存键前缀
 
     def set_cache(self, key: str, value: Any, expire: Optional[int] = None) -> bool:

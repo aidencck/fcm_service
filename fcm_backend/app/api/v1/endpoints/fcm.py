@@ -1,54 +1,41 @@
 from fastapi import APIRouter, Depends, HTTPException
-from typing import List
-from ...models.fcm import FCMToken, FCMMessage, MessageTarget, MessageResponse, TopicSubscription
-from ...services.fcm_service import FCMService
-from datetime import datetime
+from app.services.fcm_service import FCMService
+from app.core.security import get_current_user
+from app.models.user import User
+from typing import Optional, List
 
-router = APIRouter()
-fcm_service = FCMService()
+router = APIRouter(prefix="/fcm", tags=["fcm"])
 
-@router.post("/send", response_model=MessageResponse)
+@router.post("/send")
 async def send_message(
-    message: FCMMessage,
-    target: MessageTarget
+    token: str,
+    title: str,
+    body: str,
+    data: Optional[dict] = None,
+    current_user: User = Depends(get_current_user)
 ):
     """
-    Send FCM message to specified target(s)
+    Send a message to a specific device using FCM.
     """
-    return await fcm_service.send_message(message, target)
+    try:
+        message_id = FCMService.send_message(token, title, body, data)
+        return {"message_id": message_id}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
-@router.post("/tokens/register", response_model=bool)
-async def register_token(token: FCMToken):
+@router.post("/send-multicast")
+async def send_multicast(
+    tokens: List[str],
+    title: str,
+    body: str,
+    data: Optional[dict] = None,
+    current_user: User = Depends(get_current_user)
+):
     """
-    Register a new FCM token for a user
+    Send a message to multiple devices using FCM.
     """
-    # Here you would typically save the token to your database
-    # For now, we'll just validate it
-    return await fcm_service.validate_token(token.device_token)
-
-@router.post("/topics/subscribe", response_model=bool)
-async def subscribe_topic(subscription: TopicSubscription):
-    """
-    Subscribe a user's device to a topic
-    """
-    return await fcm_service.subscribe_to_topic(
-        [subscription.device_token],
-        f"{subscription.app_id}_{subscription.topic}"
-    )
-
-@router.post("/topics/unsubscribe", response_model=bool)
-async def unsubscribe_topic(subscription: TopicSubscription):
-    """
-    Unsubscribe a user's device from a topic
-    """
-    return await fcm_service.unsubscribe_from_topic(
-        [subscription.device_token],
-        f"{subscription.app_id}_{subscription.topic}"
-    )
-
-@router.post("/tokens/validate", response_model=bool)
-async def validate_token(token: str):
-    """
-    Validate if an FCM token is still valid
-    """
-    return await fcm_service.validate_token(token) 
+    try:
+        response = FCMService.send_multicast(tokens, title, body, data)
+        return response
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e)) 

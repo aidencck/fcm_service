@@ -1,14 +1,14 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.core.config.settings import settings
+from app.config.settings import settings
 from app.api.v1 import api_router
+
+from app.core.exceptions.base import FCMException
 from app.core.exceptions.handlers import (
     fcm_exception_handler,
-    validation_exception_handler,
     http_exception_handler,
 )
-from app.core.exceptions.base import FCMException
 
 app = FastAPI(
     title=settings.PROJECT_NAME,

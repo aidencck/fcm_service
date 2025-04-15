@@ -1,13 +1,14 @@
 from fastapi import Request, HTTPException
 from starlette.middleware.base import BaseHTTPMiddleware
 from ..utils.redis_client import RedisClient
-from ..config.redis_config import REDIS_CONFIG
+from ..config.settings import settings
 import logging
+from typing import Optional
 
 class RateLimiter(BaseHTTPMiddleware):
     def __init__(self, app, window_size: int = 60, max_requests: int = 100):
         super().__init__(app)
-        self.redis_client = RedisClient(**REDIS_CONFIG)
+        self.redis_client = RedisClient(**settings.redis_config)
         self.rate_limit_prefix = "api_rate_limit:"
         self.window_size = window_size
         self.max_requests = max_requests

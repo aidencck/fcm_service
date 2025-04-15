@@ -6,16 +6,21 @@ from ..models.fcm import FCMToken, FCMMessage, MessageTarget, MessageResponse
 from ..config.settings import settings
 import logging
 from ..utils.redis_client import RedisClient
-from ..config.redis_config import REDIS_CONFIG
 
 logger = logging.getLogger(__name__)
 
+# Initialize Firebase Admin SDK
+try:
+    cred = credentials.Certificate(settings.firebase_credentials)
+    firebase_admin.initialize_app(cred)
+    logger.info("Firebase Admin SDK initialized successfully")
+except Exception as e:
+    logger.error(f"Failed to initialize Firebase Admin SDK: {str(e)}")
+    raise
+
 class FCMService:
     def __init__(self):
-        if not firebase_admin._apps:
-            cred = credentials.Certificate(settings.FIREBASE_CREDENTIALS_PATH)
-            firebase_admin.initialize_app(cred)
-        self.redis_client = RedisClient(**REDIS_CONFIG)
+        self.redis_client = RedisClient(**settings.redis_config)
         self.token_cache_prefix = "fcm_token:"
         self.token_cache_expire = 86400  # 24小时过期
         self.topic_subscribers_prefix = "topic_subscribers:"

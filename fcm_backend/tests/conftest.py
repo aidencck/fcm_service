@@ -1,8 +1,8 @@
 import pytest
 import os
 from fastapi.testclient import TestClient
-from app.main import app
 from app.config.settings import settings
+from app.main import app
 import firebase_admin
 from firebase_admin import auth
 import uuid

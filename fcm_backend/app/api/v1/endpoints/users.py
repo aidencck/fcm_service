@@ -1,10 +1,11 @@
 from fastapi import APIRouter, HTTPException, Depends, status
 from typing import Dict, Any, List
+from sqlalchemy.orm import Session
 
-from ...models.user import CreateUserRequest, UserResponse, UpdateDeviceInfoRequest
-from ...services.user_service import UserService
-from ...core.dependencies import get_current_user
-from ...infrastructure.cache.redis import RedisClient
+from app.models.user import CreateUserRequest, UserResponse, UpdateDeviceInfoRequest
+from app.services.user_service import UserService
+from app.core.dependencies import get_current_user
+from app.utils.redis_init import RedisClient
 
 router = APIRouter()
 user_service = UserService()

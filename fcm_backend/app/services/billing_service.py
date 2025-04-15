@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from typing import Dict, Any, Optional, List
+from ..config.settings import settings
 from ..models.user import User, SubscriptionStatus, SubscriptionHistory
-from ..config.billing_config import BillingConfig, BillingRule
 from ..utils.redis_client import RedisClient
 import logging
 

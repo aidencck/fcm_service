@@ -3,20 +3,19 @@ from firebase_admin import auth
 from typing import Optional, Dict, Any
 import uuid
 import logging
-from ..config.settings import settings
-from ..utils.redis_client import RedisClient
-from ..config.redis_config import REDIS_CONFIG
+from app.config.settings import settings
+from app.utils.redis_client import RedisClient
 from datetime import datetime, timedelta
-from ..models.user import User, SubscriptionTier
+from app.models.user import User, SubscriptionTier
 
 logger = logging.getLogger(__name__)
 
 class UserService:
     def __init__(self):
         if not firebase_admin._apps:
-            cred = firebase_admin.credentials.Certificate(settings.FIREBASE_CREDENTIALS_PATH)
+            cred = firebase_admin.credentials.Certificate(settings.firebase_credentials)
             firebase_admin.initialize_app(cred)
-        self.redis_client = RedisClient(**REDIS_CONFIG)
+        self.redis_client = RedisClient(**settings.redis_config)
         self.cache_prefix = "user:"
         self.cache_expire = 3600  # 1小时过期
 
