@@ -1,11 +1,13 @@
 import firebase_admin
 from firebase_admin import auth
-from typing import Optional, Dict
+from typing import Optional, Dict, Any
 import uuid
 import logging
 from ..config.settings import settings
 from ..utils.redis_client import RedisClient
 from ..config.redis_config import REDIS_CONFIG
+from datetime import datetime, timedelta
+from ..models.user import User, SubscriptionTier
 
 logger = logging.getLogger(__name__)
 
@@ -167,4 +169,74 @@ class UserService:
             return True
         except Exception as e:
             logger.error(f"Error updating device info in Firebase: {str(e)}")
-            return False 
+            return False
+
+    def _get_daily_key(self, user_id: str) -> str:
+        today = datetime.now().strftime("%Y%m%d")
+        return f"api:usage:{user_id}:daily:{today}"
+        
+    def _get_monthly_key(self, user_id: str) -> str:
+        month = datetime.now().strftime("%Y%m")
+        return f"api:usage:{user_id}:monthly:{month}"
+        
+    def get_usage_limits(self, tier: SubscriptionTier) -> Dict[str, int]:
+        if tier == SubscriptionTier.FREE:
+            return {
+                "daily_limit": settings.API_FREE_TIER_DAILY_LIMIT,
+                "monthly_limit": settings.API_FREE_TIER_MONTHLY_LIMIT
+            }
+        elif tier == SubscriptionTier.BASIC:
+            return {
+                "daily_limit": settings.API_DAILY_LIMIT,
+                "monthly_limit": settings.API_MONTHLY_LIMIT
+            }
+        else:  # PREMIUM
+            return {
+                "daily_limit": settings.API_DAILY_LIMIT * 5,
+                "monthly_limit": settings.API_MONTHLY_LIMIT * 5
+            }
+            
+    def check_api_usage(self, user: User) -> Dict[str, Any]:
+        daily_key = self._get_daily_key(user.id)
+        monthly_key = self._get_monthly_key(user.id)
+        
+        daily_usage = self.redis_client.get_counter(daily_key) or 0
+        monthly_usage = self.redis_client.get_counter(monthly_key) or 0
+        
+        limits = self.get_usage_limits(user.subscription_tier)
+        
+        return {
+            "daily_usage": daily_usage,
+            "monthly_usage": monthly_usage,
+            "daily_remaining": max(0, limits["daily_limit"] - daily_usage),
+            "monthly_remaining": max(0, limits["monthly_limit"] - monthly_usage),
+            "is_daily_exceeded": daily_usage >= limits["daily_limit"],
+            "is_monthly_exceeded": monthly_usage >= limits["monthly_limit"]
+        }
+        
+    def increment_api_usage(self, user: User) -> bool:
+        daily_key = self._get_daily_key(user.id)
+        monthly_key = self._get_monthly_key(user.id)
+        
+        # 设置每日计数过期时间为2天
+        self.redis_client.set_expire(daily_key, 172800)
+        # 设置每月计数过期时间为62天
+        self.redis_client.set_expire(monthly_key, 5356800)
+        
+        return (
+            self.redis_client.increment_counter(daily_key) and
+            self.redis_client.increment_counter(monthly_key)
+        )
+        
+    def get_usage_history(self, user: User, days: int = 30) -> Dict[str, Any]:
+        history = {}
+        today = datetime.now()
+        
+        for i in range(days):
+            date = today - timedelta(days=i)
+            date_str = date.strftime("%Y%m%d")
+            key = f"api:usage:{user.id}:daily:{date_str}"
+            usage = self.redis_client.get_counter(key) or 0
+            history[date_str] = usage
+            
+        return history 
