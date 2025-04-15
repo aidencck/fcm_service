@@ -24,44 +24,37 @@ wheels/
 venv/
 ENV/
 env/
-.env
 
 # IDE
 .idea/
 .vscode/
 *.swp
 *.swo
-.DS_Store
 
 # Environment variables
 .env
-
-# Credentials
-credentials/
-*.json
-!package.json
 
 # Logs
 *.log
 logs/
 
+# Firebase credentials
+credentials/
+firebase-credentials.json
+
 # Redis
 *.rdb
 dump.rdb
 
-# Test coverage
+# Testing
 .coverage
 htmlcov/
-.tox/
-.nox/
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
 .pytest_cache/
+.tox/
+
+# OS
+.DS_Store
+Thumbs.db
 
 # Local development
 local_settings.py
