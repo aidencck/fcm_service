@@ -1,7 +1,6 @@
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
-    # ... existing code ...
     
     # Billing Configuration
     API_DAILY_LIMIT: int = 1000
