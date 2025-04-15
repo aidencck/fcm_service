@@ -4,6 +4,8 @@ from typing import Optional, Dict
 import uuid
 import logging
 from ..config.settings import settings
+from ..utils.redis_client import RedisClient
+from ..config.redis_config import REDIS_CONFIG
 
 logger = logging.getLogger(__name__)
 
@@ -12,6 +14,9 @@ class UserService:
         if not firebase_admin._apps:
             cred = firebase_admin.credentials.Certificate(settings.FIREBASE_CREDENTIALS_PATH)
             firebase_admin.initialize_app(cred)
+        self.redis_client = RedisClient(**REDIS_CONFIG)
+        self.cache_prefix = "user:"
+        self.cache_expire = 3600  # 1小时过期
 
     async def create_user(self, platform: str, app_id: str, device_info: Optional[Dict] = None) -> str:
         """
@@ -45,6 +50,19 @@ class UserService:
             auth.set_custom_user_claims(user.uid, custom_claims)
 
             logger.info(f"Created new user with UID: {user.uid} for platform: {platform}, app_id: {app_id}")
+
+            # 创建用户信息字典
+            user_info = {
+                "user_id": user.uid,
+                "platform": platform,
+                "app_id": app_id,
+                "device_info": device_info
+            }
+            
+            # 设置缓存
+            cache_key = f"{self.cache_prefix}{user.uid}"
+            self.redis_client.set(cache_key, user_info, self.cache_expire)
+            
             return user.uid
 
         except Exception as e:
@@ -58,6 +76,60 @@ class UserService:
             user_id: The Firebase user UID
         Returns:
             Dict: User information including custom claims
+        """
+        try:
+            # 先尝试从缓存获取
+            cache_key = f"{self.cache_prefix}{user_id}"
+            user_info = self.redis_client.get(cache_key)
+            
+            if user_info:
+                logging.info(f"Cache hit for user {user_id}")
+                return user_info
+            
+            # 缓存未命中，从Firebase获取
+            logging.info(f"Cache miss for user {user_id}, fetching from Firebase")
+            user_info = await self._get_user_from_firebase(user_id)
+            
+            if user_info:
+                # 存入缓存
+                self.redis_client.set(cache_key, user_info, self.cache_expire)
+            
+            return user_info
+        except Exception as e:
+            logger.error(f"Error getting user info: {str(e)}")
+            raise
+
+    async def update_user_device_info(self, user_id: str, device_info: Dict) -> bool:
+        """
+        Update user's device information
+        Args:
+            user_id: The Firebase user UID
+            device_info: New device information
+        Returns:
+            bool: True if successful
+        """
+        try:
+            # 更新Firebase
+            success = await self._update_firebase_device_info(user_id, device_info)
+            
+            if success:
+                # 删除缓存，强制下次重新获取
+                cache_key = f"{self.cache_prefix}{user_id}"
+                self.redis_client.delete(cache_key)
+                
+                # 更新缓存中的设备信息
+                user_info = await self._get_user_from_firebase(user_id)
+                if user_info:
+                    self.redis_client.set(cache_key, user_info, self.cache_expire)
+            
+            return success
+        except Exception as e:
+            logger.error(f"Error updating device info: {str(e)}")
+            raise
+
+    async def _get_user_from_firebase(self, user_id: str) -> Dict:
+        """
+        从Firebase获取用户信息
         """
         try:
             user = auth.get_user(user_id)
@@ -74,17 +146,12 @@ class UserService:
                 "last_sign_in": user.user_metadata.last_sign_in_timestamp
             }
         except Exception as e:
-            logger.error(f"Error getting user info: {str(e)}")
+            logger.error(f"Error getting user info from Firebase: {str(e)}")
             raise
 
-    async def update_user_device_info(self, user_id: str, device_info: Dict) -> bool:
+    async def _update_firebase_device_info(self, user_id: str, device_info: Dict) -> bool:
         """
-        Update user's device information
-        Args:
-            user_id: The Firebase user UID
-            device_info: New device information
-        Returns:
-            bool: True if successful
+        更新Firebase中的设备信息
         """
         try:
             # Get current custom claims
@@ -99,5 +166,5 @@ class UserService:
             logger.info(f"Updated device info for user: {user_id}")
             return True
         except Exception as e:
-            logger.error(f"Error updating user device info: {str(e)}")
+            logger.error(f"Error updating device info in Firebase: {str(e)}")
             return False 

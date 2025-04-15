@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from .middleware.rate_limiter import RateLimiter
 from .api.v1.endpoints import fcm, users
 from .config.settings import settings
 
@@ -15,6 +16,13 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+)
+
+# Add rate limiting middleware
+app.add_middleware(
+    RateLimiter,
+    window_size=60,  # 1 minute window
+    max_requests=100  # Max requests per minute
 )
 
 # Include routers

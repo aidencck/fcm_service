@@ -1,13 +1,15 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends
 from ...models.user import CreateUserRequest, UserResponse, UpdateDeviceInfoRequest
 from ...services.user_service import UserService
 from typing import Dict
+from ...db.session import get_db
+from sqlalchemy.orm import Session
 
 router = APIRouter()
 user_service = UserService()
 
 @router.post("/create", response_model=UserResponse)
-async def create_user(request: CreateUserRequest):
+async def create_user(request: CreateUserRequest, db: Session = Depends(get_db)):
     """
     Create a new Firebase user
     """
