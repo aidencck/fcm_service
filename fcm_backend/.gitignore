@@ -1,0 +1,105 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.env
+.venv
+.python-version
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+
+# Testing
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+htmlcov/
+
+# Logs
+*.log
+logs/
+log/
+
+# Database
+*.db
+*.sqlite3
+*.sqlite
+
+# FastAPI
+.env
+.env.local
+.env.*.local
+
+# Firebase
+firebase-debug.log
+firebase-debug.*.log
+firebase-adminsdk.json
+serviceAccountKey.json
+
+# Redis
+dump.rdb
+*.rdb
+
+# System
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
+*.temp
+
+# Project specific
+node_modules/
+.next/
+out/
+.vercel/
+.now/
+
+# Documentation
+/site
+docs/_build/
+docs/api/
+
+# Deployment
+*.pem
+*.key
+*.crt
+*.cert
+
+# Temporary files
+tmp/
+temp/
+.temp/ 
